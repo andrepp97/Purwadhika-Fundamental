@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MANTAP LUR</title>
+
+    <style>
+        h1 {
+            font-family: 'Trebuchet MS';
+        }
+
+        .inputan {
+            padding: 5 5 5 5px;
+            font-size: 18px;
+            font-family: 'Century Gothic';
+        }
+
+        .btnOk {
+            margin-top: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            font-family: 'Trebuchet MS';
+            font-size: 16px;
+            border: none;
+            border-radius: 10%;
+            cursor: pointer;
+            outline: none;
+            background: rgb(220, 220, 230);
+        }
+
+        .btnOk:hover {
+            background: rgb(80, 79, 79);
+            color: white;
+        }
+
+        textarea {
+            border: 2px solid wheat;
+            padding: 5 5 5 5;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>Mantap Jiwa</h1>
+        <input type="number" class="inputan" placeholder="Diisi angka bro...">
+        <input type="number" class="inputan" placeholder="Diisi angka bro...">
+        <br>
+        <input type="button" class="btnOk" value="Tambah" onclick="btnTambah()">
+        <input type="button" class="btnOk" value="Kurang" onclick="btnKurang()">
+        <input type="button" class="btnOk" value="Kali" onclick="btnKali()">
+        <input type="button" class="btnOk" value="Bagi" onclick="btnBagi()">
+    </center>
+
+
+    <script>
+        btnTambah = () => {
+            let angka1 = document.getElementsByTagName('input')[0].valueAsNumber
+            let angka2 = document.getElementsByTagName('input')[1].valueAsNumber
+
+            if (isNaN(angka1) || isNaN(angka2)) {
+                alert("Belom input cuy")
+            } else {
+                document.getElementsByTagName('h1')[0].innerHTML = angka1 + angka2
+            }
+        }
+
+        btnKurang = () => {
+            let angka1 = document.getElementsByTagName('input')[0].value
+            let angka2 = document.getElementsByTagName('input')[1].value
+            if (angka1 == "" || angka2 == "") {
+                alert("Belom input cuy")
+            } else {
+                document.getElementsByTagName('h1')[0].innerHTML = angka1 - angka2
+            }
+        }
+
+        btnKali = () => {
+            let angka1 = document.getElementsByTagName('input')[0].value
+            let angka2 = document.getElementsByTagName('input')[1].value
+            if (angka1 == "" || angka2 == "") {
+                alert("Belom input cuy")
+            } else {
+                document.getElementsByTagName('h1')[0].innerHTML = angka1 * angka2
+            }
+        }
+
+        btnBagi = () => {
+            let angka1 = document.getElementsByTagName('input')[0].value
+            let angka2 = document.getElementsByTagName('input')[1].value
+            if (angka1 == "" || angka2 == "") {
+                alert("Belom input cuy")
+            } else {
+                document.getElementsByTagName('h1')[0].innerHTML = angka1 / angka2
+            }
+        }
+    </script>
+</body>
+
+</html>

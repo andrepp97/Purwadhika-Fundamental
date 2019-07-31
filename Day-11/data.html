@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mantap Jiwa</title>
+
+    <style>
+        h1 {
+            font-family: 'Trebuchet MS';
+            padding: 5px;
+        }
+
+        table,
+        th,
+        td {
+            border-collapse: collapse;
+            border: solid black 2px;
+            text-align: center;
+            padding: 5px;
+            margin: 50px;
+            font-family: 'Segoe UI';
+        }
+
+        .inputan {
+            outline: none !important;
+            border: none;
+        }
+
+        .gender {
+            cursor: pointer;
+            outline: none;
+        }
+
+        .btnOK {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            font-family: 'Trebuchet MS';
+            font-size: 16px;
+            border: none;
+            border-radius: 15%;
+            cursor: pointer;
+            outline: none;
+            background: rgb(220, 220, 230);
+        }
+
+        .btnOK:hover {
+            background: rgb(80, 79, 79);
+            color: white;
+        }
+    </style>
+</head>
+
+<body onload="loadData()">
+    <center>
+        <h1>DATA GUE</h1>
+        <form id="formGue">
+            <table>
+                <thead>
+                    <tr>
+                        <td><b>Nama</b></td>
+                        <td><b>Usia</b></td>
+                        <td><b>Pekerjaan</b></td>
+                        <td><b>Gender</b></td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+
+                <tfoot>
+                    <td><input id="nama" class="inputan" type="text" placeholder="Nama anda..."></td>
+                    <td><input id="usia" class="inputan" type="text" placeholder="Usia anda..."></td>
+                    <td><input id="pekerjaan" class="inputan" type="text" placeholder="Pekerjaan anda..."></td>
+                    <td><input class="gender" type="radio" value="P" name="kelamin" onclick="getGender()">Pria
+                        <input class="gender" type="radio" name="kelamin" value="W" onclick="getGender()">Wanita</td>
+                </tfoot>
+            </table>
+        </form>
+
+        <input type="button" class="btnOK" value="Add" onclick="addData()">
+        <!-- <input type="button" class="btnOK" value="Show" onclick="showData()"> -->
+    </center>
+
+
+    <!-- JS -->
+    <script>
+        let radios = ''
+
+        function getGender() {
+            radios = document.getElementsByName('kelamin');
+
+            for (var i = 0, length = radios.length; i < length; i++) {
+                if (radios[i].checked) { 
+                    radios = radios[i].value;
+                    break;
+                }
+            }
+        }
+
+        class Orang {
+            constructor(nama, usia, pekerjaan, gender) {
+                this.nama = nama,
+                    this.usia = usia,
+                    this.pekerjaan = pekerjaan,
+                    this.gender = gender
+            }
+        }
+
+
+        let data = [new Orang('Vincent', 22, 'Mantap Jiwa', 'P'), new Orang('Anton', 22, 'Trader', 'P')]
+
+        addData = () => {
+            let xNama = document.getElementById('nama').value
+            let xUsia = document.getElementById('usia').value
+            let xJob = document.getElementById('pekerjaan').value
+            let xGender = radios
+
+            let newMan = new Orang(xNama, xUsia, xJob, xGender)
+
+            data.push(newMan)
+            showData(data)
+            document.getElementById("formGue").reset();
+        }
+
+        showData = (arrData) => {
+            var hasil = ''
+            arrData.map((val) => {
+                hasil += `<tr>
+                            <td>${val.nama}</td>
+                            <td>${val.usia}</td>
+                            <td>${val.pekerjaan}</td>
+                            <td>${val.gender}</td>
+                          </tr>`
+            })
+
+            document.getElementsByTagName('tbody')[0].innerHTML = hasil
+        }
+
+        loadData = () => {
+            showData(data)
+        }
+    </script>
+</body>
+
+</html>

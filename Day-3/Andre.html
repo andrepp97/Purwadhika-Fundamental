@@ -1,0 +1,102 @@
+<script>
+    let pattern = ''
+
+    do {
+        do {
+            var menu = prompt(
+                "MENU \n\na. Siku2 membesar \nb. Siku2 mengecil \nc. Segitiga sama kaki \nd. Belanja \n\n0. Exit")
+            if (menu == 'a' || menu == 'b' || menu == 'c' || menu == 'd' || menu == '0') {
+                var status = 1
+            } else {
+                status = 0
+                alert("Invalid Input")
+            }
+        } while (status == 0);
+
+        if (menu == 0) {
+            break
+        }
+
+        if (menu == 'a' || menu == 'b' || menu == 'c') {
+
+            do {
+                var baris = prompt('Input jumlah baris (1-10)')
+                if (baris < 1 || baris > 10) {
+                    alert('Input Invalid')
+                }
+            } while (baris < 1 || baris > 10);
+
+            if (menu == 'a') {
+
+                for (let i = 0; i <= baris - 1; i++) {
+                    pattern += '*'
+                    for (let j = 0; j < i; j++) {
+                        pattern += '*'
+                    }
+                    pattern += '\n'
+                }
+
+            } else if (menu == 'b') {
+
+                for (let i = 0; i < baris; i++) {
+                    pattern += '*'
+                    for (let j = baris; j > i; j--) {
+                        pattern += '*'
+                    }
+                    pattern += '\n'
+                }
+
+            } else if (menu == 'c') {
+
+                for (var i = 1; i <= baris; i++) {
+                    for (var j = i; j <= baris; j++) {
+                        pattern += '  '
+                    }
+
+                    for (var k = 1; k <= i; k++) {
+                        pattern += '* '
+                    }
+
+                    for (var l = 1; l <= i - 1; l++) {
+                        pattern += '* '
+                    }
+
+                    pattern += '\n';
+                }
+
+            }
+
+            alert(pattern)
+            pattern = ''
+        }
+
+        if (menu == 'd') {
+            do {
+                var daging = prompt(
+                    "MENU BELANJA \n\n1. Ayam = 10.000/pcs \n2. Sapi = 25.000/pcs \n3. Salmon = 30.000/pcs")
+
+                if (daging == '1' || daging == '2' || daging == '3') {
+                    var x = 1
+                } else {
+                    var x = 0
+                    alert('Invalid Input')
+                }
+            } while (x == 0);
+
+            var qty = prompt("Beli berapa pcs ?")
+
+            if (daging == '1') {
+                let ayam = qty * 10000
+                alert("Total Belanja Anda : Rp " + ayam)
+            } else if (daging == '2') {
+                let sapi = qty * 25000
+                alert("Total Belanja Anda : Rp " + sapi)
+            } else if (daging == '3') {
+                let salmon = qty * 30000
+                alert("Total Belanja Anda : Rp " + salmon)
+            }
+        }
+    } while (confirm("Mau diulang ?") == true);
+
+    alert("Thank You!")
+</script>

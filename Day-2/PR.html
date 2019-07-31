@@ -1,0 +1,33 @@
+<!--// Input angka 1
+    // Input angka 2
+    // Input Operator
+    // Tampilin hasil
+    // Do you want to count again?
+    // Jika Ok, maka kembali ke step awal
+    // Jika Cancel, tempilkan message -->
+
+<script>
+    do {
+        var angka1 = parseFloat(prompt("Masukkan Angka Pertama : "))
+        var angka2 = parseFloat(prompt("Masukkan Angka Kedua : "))
+        var operate = prompt("Masukkan Operator (+-x/)")
+        var hasil;
+
+        if (operate == '+') {
+            hasil = angka1 + angka2
+        } else if (operate == '-') {
+            hasil = angka1 - angka2
+        } else if (operate == 'x') {
+            hasil = angka1 * angka2
+        } else if (operate == '/') {
+            hasil = angka1 / angka2
+        }
+
+        alert("Hasil = " + hasil)
+        var status = confirm("Do u wanna count again ?")
+    } while (status == 'true');
+
+    if (status == 'false') {
+        alert("Thank You, Come Again!")
+    }
+</script>

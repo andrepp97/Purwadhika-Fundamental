@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Andre PP</title>
+</head>
+
+<body>
+    <!-- CSS -->
+    <style>
+        h1,
+        h3,
+        p {
+            text-align: center;
+            font-family: 'Trebuchet MS'
+        }
+
+        table,
+        th,
+        td {
+            border: 2px solid black;
+            border-collapse: collapse;
+            border-color: blue;
+            text-align: center;
+            font-family: 'Segoe UI';
+        }
+
+        .mantap {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn {
+            margin-left: 5px;
+            margin-right: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            width: 100px;
+            height: 30px;
+            background-color: rgb(17, 114, 194);
+            color: white;
+            outline: none !important;
+        }
+
+        .btn:hover {
+            background-color: rgba(17, 114, 194, 0.9);
+            border-radius: 10px;
+        }
+    </style>
+
+    <!-- CONTENT -->
+    <h1>Purwadhika League 2019</h1>
+
+        <table align="center">
+            <tr class="mantap">
+                <td><mark>Rank</mark></td>
+                <td><mark>Club</mark></td>
+                <td><mark>Logo</mark></td>
+                <td><mark>Function</mark></td>
+                <td><mark>Level</mark></td>
+                <td><mark>OK</mark></td>
+            </tr>
+            <tr>
+                <td>1<sup>st</sup></td>
+                <td><b>Barcelona FC</b></td>
+                <td><img src="img/barca.png" style="width:50px;"></td>
+                <td>2x<sup>3</sup> + 3x<sup>2</sup> - x - 13 = 0</td>
+                <td><input type="checkbox" value="junior">Junior &nbsp<input type="checkbox" value="pro">Professional
+                </td>
+                <td><input class="btn" type="button" value="Show Logo" onclick="logoBarca()"></td>
+            </tr>
+            <tr>
+                <td>2<sup>nd</sup></td>
+                <td><b>Bayern Munich</b></td>
+                <td><img src="img/munchen.png" style="width:50px;"></td>
+                <td>3y<sup>3</sup> + 5y<sup>2</sup> - 2y - 13 = 0</td>
+                <td><input type="checkbox" value="junior">Junior <input type="checkbox" value="pro">Professional</td>
+                <td><input class="btn" type="button" value="Show Logo" onclick="logoBayern()"></td>
+            </tr>
+            <tr>
+                <td>3<sup>rd</sup></td>
+                <td><b>Real Madrid</b></td>
+                <td><img src="img/real.png" style="width:50px;"></td>
+                <td>2z<sup>3</sup> + z<sup>2</sup> - 2z - 13 = 0</td>
+                <td><input type="checkbox" value="junior">Junior <input type="checkbox" value="pro">Professional</td>
+                <td><input class="btn" type="button" value="Show Logo" onclick="logoMadrid()"></td>
+            </tr>
+        </table>
+
+    <br><br>
+    <div style="text-align: center;">
+        <img src="" class="logoBro" style="width:100px;">
+    </div>
+    <h3>Andre &copy; 2019</h3>
+    <p>andreputerap@gmail.com</p>
+
+    <!-- JS -->
+    <script>
+        function logoBarca() {
+            document.getElementsByClassName("logoBro")[0].src = "img/barca.png"
+        }
+
+        function logoBayern() {
+            document.getElementsByClassName("logoBro")[0].src = "img/munchen.png"
+        }
+
+        function logoMadrid() {
+            document.getElementsByClassName("logoBro")[0].src = "img/real.png"
+        }
+    </script>
+</body>
+
+</html>

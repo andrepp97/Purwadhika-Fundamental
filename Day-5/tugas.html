@@ -1,0 +1,70 @@
+<script>
+
+    //Functions
+    volumeKubus = () =>{
+
+    }
+
+    luasSegitiga = () => {
+        let alas = parseInt(prompt("Masukkan alas", 0))
+        let tinggi = parseInt(prompt("Masukkan tinggi", 0))
+
+        let luas = (alas*tinggi)/2
+        alert("Luas Segitiga : " + luas + " cm2")
+    }
+
+    function luasTrap() {
+        let sisi1 = parseInt(prompt("Masukkan sisi 1", 0))
+        let sisi2 = parseInt(prompt("Masukkan sisi 2", 0))
+        let tinggi = parseInt(prompt("Masukkan tinggi", 0))
+
+        let luas = (sisi1+sisi2)*tinggi/2
+        alert("Luas Trapesium : " + luas + " cm2")
+    }
+
+    function luasPpanjang() {
+        let panjang = parseInt(prompt("Masukkan Panjang", 0))
+        let lebar = parseInt(prompt("Masukkan Lebar", 0))
+
+        let luas = panjang*lebar
+        alert("Luas Persegi Panjang : " + luas + " cm2")
+    }
+
+    function detikJam() {
+        let detik = prompt("Masukkan Detik")
+        let hasil = Math.round((detik/3600)*100)/100
+
+        alert(detik + " Detik = " + hasil + " Jam")
+    }
+
+        do {
+            let menu = prompt("Hitung Luas : \n\n1. Segitiga \n2. Trapesium \n3. Persegi Panjang \n4. Convert Detik -> Jam")
+
+            if (menu === null) {
+
+                break
+
+            }else if(menu == 1 || menu == 2 || menu == 3 || menu == 4){
+
+                let status = 1
+
+                if (menu == 1) {
+                    luasSegitiga()
+                }else if(menu ==2){
+                    luasTrap()
+                }else if(menu == 3){
+                    luasPpanjang()
+                }else if(menu == 4){
+                    detikJam()
+                }
+
+            }else{
+
+                status = 0
+                alert("Input lo kaga bener!")
+
+            }
+        }while (status == 0);
+
+        alert("Thank You!")
+</script>

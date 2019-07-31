@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM</title>
+</head>
+
+<body>
+    <style>
+        .pink {
+            background-color: pink;
+        }
+
+        .borders {
+            border: 2px solid grey;
+            width: 50%;
+        }
+    </style>
+
+
+    <h1 id="JC"></h1>
+    <h1></h1>
+    <div>
+        <h2 class="jomblo"></h2>
+    </div>
+    <br><br>
+    <h1 style="text-align: center;" id="sayang"></h1>
+    <div style="text-align: center;">
+        <input type="button" value="CLICK ME!!" onclick="sayang()">
+    </div>
+
+    <script>
+        var x = 'Mantap Jiwa'
+        document.getElementsByTagName('h1')[0].innerHTML = x
+        document.getElementsByTagName('h1')[1].innerHTML = x + ' !!!'
+        document.getElementsByClassName('jomblo')[0].innerHTML = x + ' !!!!!!!'
+        document.getElementsByTagName('div')[0].className = 'pink borders'
+
+        function sayang() {
+            document.getElementById('sayang').innerHTML += 'Hai Zheyenggg'
+        }
+    </script>
+</body>
+
+</html>

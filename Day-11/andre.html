@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PR Cuy</title>
+
+    <style>
+        h2 {
+            font-family: 'Trebuchet MS';
+            text-align: center;
+        }
+
+        td {
+            font-family: 'Trebuchet MS';
+            padding: 2px;
+        }
+
+        .inputan {
+            outline: none !important;
+            padding: 5px;
+            margin: 10px;
+        }
+
+        .btnOK {
+            width: 60px;
+            border: none;
+            padding: 5px;
+            margin: 10px;
+            background: rgba(12, 71, 199, 0.945);
+            color: white;
+            cursor: pointer;
+            font-family: 'Trebuchet MS';
+            font-size: 14px;
+            outline: none;
+            border-radius: 5%;
+        }
+
+        .btnOK:hover {
+            background: rgba(20, 75, 194, 0.87);
+            border-radius: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <table align="center" style="border: 2px solid black;">
+        <tr>
+            <td>
+                <h2>Drawing Tools</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>Pilihan Bentuk :</td>
+        </tr>
+        <tr>
+            <td>1. Persegi</td>
+        </tr>
+        <tr>
+            <td>2. Segitiga Siku-Siku</td>
+        </tr>
+        <tr>
+            <td>3. Segitiga Siku Kanan</td>
+        </tr>
+        <tr>
+            <td>4. Segitiga Sama Kaki</td>
+        </tr>
+        <tr>
+            <td>5. Clear Display</td>
+        </tr>
+        <tr>
+            <td><input class="inputan" type="number" placeholder="Pilih bentuk..."></td>
+        </tr>
+        <tr>
+            <td><input class="inputan" type="number" placeholder="Panjangnya..."></td>
+        </tr>
+        <tr>
+            <td style="text-align: center"><input class="btnOK" type="button" value="Submit" onclick="zheyenk()"></td>
+        </tr>
+
+        <tr>
+            <td class="oyi"></td>
+        </tr>
+    </table>
+
+
+    <!-- JS -->
+    <script>
+        function zheyenk() {
+            let bentuk = document.getElementsByClassName('inputan')[0].value
+            let panjang = document.getElementsByClassName('inputan')[1].value
+
+            if (bentuk == 1) {
+                var hasil = ''
+                for (let i = 0; i < panjang; i++) {
+                    hasil += '* &nbsp'
+                    for (let j = 0; j < panjang; j++) {
+                        hasil += '* &nbsp'
+                    }
+                    hasil
+                        += '<br>'
+                }
+                document.getElementsByClassName('oyi')[0].innerHTML = `<p style="text-align:center">${hasil}</p>`
+
+            } else if (bentuk == 2) {
+                var hasil = ''
+                for (let i = 0; i < panjang; i++) {
+                    hasil += '* '
+                    for (let j = 0; j < i; j++) {
+                        hasil += '* '
+                    }
+                    hasil += '<br>'
+                }
+                document.getElementsByClassName('oyi')[0].innerHTML = `<p>${hasil}</p>`
+
+            } else if (bentuk == 3) {
+                var hasil = ''
+                for (let i = 0; i < panjang; i++) {
+                    hasil += '* '
+                    for (let j = 0; j < i; j++) {
+                        hasil += '* '
+                    }
+                    hasil
+                        += '<br>'
+                }
+                document.getElementsByClassName('oyi')[0].innerHTML = `<p style="text-align: right">${hasil}</p>`
+
+            } else if (bentuk == 4) {
+                var hasil = ''
+                for (var i = 1; i <= panjang; i++) {
+                    for (var k = 1; k <= i; k++) {
+                        hasil += '* '
+                    }
+                    for (var l = 1; l <= i - 1; l++) {
+                        hasil += '* '
+                    }
+                    hasil += '<br>';
+                }
+                document.getElementsByClassName('oyi')[0].innerHTML = `<p style="text-align: center">${hasil}</p>`
+
+            } else {
+                document.getElementsByClassName('oyi')[0].innerHTML = ``
+            }
+        }
+    </script>
+</body>
+
+</html>

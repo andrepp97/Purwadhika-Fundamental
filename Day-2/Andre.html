@@ -1,0 +1,28 @@
+<script>
+    do {
+        var datang = parseInt(prompt("Masukkan Jam Datang (Format 12 jam)"))
+        var datangFormat = prompt("AM or PM")
+        var keluar = parseInt(prompt("Masukkan Jam Keluar (Format 12 jam)"))
+        var keluarFormat = prompt("AM or PM")
+        var total;
+        var x;
+
+        if (datang == keluar && datangFormat == keluarFormat) {
+            x = 24
+        }else if(datangFormat != keluarFormat){
+            x = (keluar +12) - datang
+        }else if(datangFormat == keluarFormat){
+            x = keluar - datang
+        }
+
+        if (x > 2) {
+            total = (2 * 2000) + ((x - 2) * 500)
+        } else {
+            total = (2 * 2000)
+        }
+
+        alert("Your total parking fee : Rp " + total)
+    } while (confirm("Do u wanna repeat ?")==true);
+
+    alert("Thank You!")
+</script>

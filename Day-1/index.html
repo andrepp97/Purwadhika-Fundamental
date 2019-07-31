@@ -1,0 +1,77 @@
+<!-- <script>
+    name = prompt("Masukkan nama anda :")
+    birthdate = prompt("Tanggal lahir anda :")
+    alamat = prompt("Alamat anda saat ini :")
+    profesi = prompt("Profesi anda saat ini :")
+
+    alert('Nama       : ' + name + ' Tgl Lahir  : ' + birthdate + ' Alamat     : ' + alamat + ' Profesi    : ' + profesi)
+</script> -->
+
+<script>
+    // var angka = prompt("Masukkan angka : ", 0)
+    // var angka2 = prompt("Masukkan angka2 : ", 0)
+    // var total = parseInt(angka) + parseInt(angka2)
+
+    // alert("Total : " + total)
+
+        // if (angka % 2 == 0) {
+        //     alert('Ini angka Genap')
+        // } else {
+        //     alert('Ini angka Ganjil')
+        // }
+
+        // 1. user input nilai
+        // 2. nilai diproses jadi grade
+        // 3. 90 - 100 = A
+        // 4. 80 - 89 = B
+        // 5. 70 - 79 = C
+        // 6. 60 - 69 = D
+        // 7. 0 - 59 = F
+        // Tampilkan Grade
+
+        // var nilai = prompt("Masukkan Nilai : ")
+        // var grade;
+
+        // if (nilai > 89 && nilai < 101) {
+        //     grade = 'A'            
+        // }else if(nilai < 90 && nilai > 79){
+        //     grade = 'B'
+        // }else if(nilai < 80 && nilai > 69){
+        //     grade = 'C'
+        // }else if(nilai < 70 && nilai > 59){
+        //     grade = 'D'
+        // }else if(nilai > 100){
+        //     alert("Maksimum nilai adalah 100 Bro!")
+        // }else{
+        //     grade = 'F'
+        // }
+
+        // alert("Grade Anda : " + grade)
+
+
+        // 1. Input berat badan
+        // 2. input tinggi badan
+        // 3. proses IMT
+        // 4. Tampilkan
+
+        var bb = parseFloat(prompt("Masukkan Berat Badan (kg) : "))
+        var tb = parseFloat(prompt("Masukkan Tinggi Badan (cm) : "))
+        tb = tb/100
+
+        var imt = bb / (Math.pow(tb,2))
+        var hasil;
+
+        if (imt >= 40) {
+            hasil = "Obesitas"
+        }else if(imt >= 30){
+            hasil = "Sangat Berlebih"
+        }else if(imt >= 25){
+            hasil = "Berlebih"
+        }else if(imt >= 18.5){
+            hasil = "Ideal"
+        }else{
+            hasil = "Kurang"
+        }
+
+        alert("Berat badan anda " + hasil + " (IMT = " + imt + ")")
+</script>
