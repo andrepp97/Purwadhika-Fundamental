@@ -42,6 +42,10 @@ function totHarga(data) {
     var total = 0
 
     for (let i = 0; i < data.length; i++) {
-        
+        total += data[i].qty * data[i].price
     }
+
+    console.log(total)
 }
+
+totHarga(cart)
