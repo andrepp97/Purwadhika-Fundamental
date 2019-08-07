@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TOKO AKU</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body style="font-family: 'Montserrat', sans-serif; background: whitesmoke">
+    <!------------------------- HTML ---------------------->
+    <h1 style="text-align: center; margin-top: 20px;">TOKO AKU</h1>
+    <div class="col-md-10 offset-md-1">
+        <table class="table table-hover mt-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" style="text-align: center">#</th>
+                    <th scope="col">Products</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td style="padding-top: 35px;">Add</td>
+                    <td style="padding-top: 27px;"><input placeholder="Input item name" type="text" id="name"
+                            class="form-control"></td>
+                    <td style="padding-top: 27px;"><input placeholder="Input price" type="number" id="price"
+                            class="form-control"></td>
+                    <td style="padding-top: 27px;"><input placeholder="Image name (ex: bakso.jpg)" type="text" id="pic"
+                            class="form-control"></td>
+                    <td><input type="reset" value="Add Item" class="btn btn-primary" style="margin-top: 14px;"
+                            onclick="addItem()"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <h2 id="cartCuy" style="text-align: center; margin-top: 50px;">CART</h2>
+    <h4 style="text-align: center; margin-top: 10px;"></h4>
+    <div class="col-md-10 offset-md-1">
+        <table class="table table-hover mt-3">
+            <thead class="thead-dark">
+            </thead>
+            <tbody id="cartBro">
+            </tbody>
+        </table>
+    </div>
+
+    <div style="color: red; text-align: center; margin-top: 50px; margin-bottom: 10px;" id="countdown">
+    </div>
+
+    <div class="col-md-4 offset-md-4" id="bayar" style="margin-bottom: 50px; margin-top: 10px;">
+    </div>
+
+
+    <!--------------------- Javascript ---------------------->
+    <script>
+        class Products {
+            constructor(nama, harga, gambar) {
+                this.nama = nama,
+                    this.harga = harga,
+                    this.gambar = gambar
+            }
+        }
+
+        class Items {
+            constructor(nama, qty, harga, gambar) {
+                this.nama = nama,
+                    this.harga = harga,
+                    this.gambar = gambar,
+                    this.qty = qty
+            }
+        }
+
+        var data = [
+            new Products('Geprek Sambal Matah', '20000',
+                `<img src="img/geprek.jpg" style="height:50px; width:90px;" class="rounded-pill"></<img>`),
+            new Products('Kulit Crispy', '15000',
+                `<img src="img/skin.jpg" style="height:50px; width:90px;" class="rounded-pill"></<img>`),
+            new Products('Susu Murni', '8000',
+                `<img src="img/susu.jpg" style="height:50px; width:90px;" class="rounded-pill"></<img>`)
+        ]
+
+        var cart = []
+
+        let idx = 0
+        let tot = 0
+        let dTimer = ''
+
+
+        // =========== Functions ============
+        thousandSeparator = (x) => {
+            let splits = x.toString().split(",");
+            splits[0] = splits[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            return splits.join(",");
+        }
+
+        addItem = () => {
+            let namaBrg = document.getElementById('name').value
+            let hargaBrg = document.getElementById('price').value
+            let picBrg = document.getElementById('pic').value
+            picBrg = `<img src="img/${picBrg}" style="height:50px; width:90px;" class="rounded-pill"></<img>`
+
+            if (namaBrg == '' || hargaBrg == '' || picBrg == '') {
+                alert('Invalid Input!')
+            } else {
+                let newItem = new Products(namaBrg, hargaBrg, picBrg)
+
+                data.push(newItem)
+                showProduct(data)
+            }
+        }
+
+        showProduct = (arr) => {
+            var hasil = ''
+            for (var i = 0; i < arr.length; i++) {
+                hasil += `<tr onmouseover="getRowIndex(this)">
+            <th scope="row" style="padding-top: 27px; text-align:center;">${Number([i])+1}</th>
+            <td style="padding-top: 27px;">${arr[i].nama}</td>
+            <td style="padding-top: 27px;">${thousandSeparator(arr[i].harga)}</td>
+            <td>${arr[i].gambar}</td>
+            <td><input type="button" class="btn btn-success" value="Add to Cart" onclick="addToCart()" style="margin-top: 6px;"></td>
+            </tr>`
+            }
+            document.getElementsByTagName('tbody')[0].innerHTML = hasil
+        }
+
+        showCart = (arr) => {
+            if (cart.length > 0) {
+                document.getElementsByTagName('thead')[1].innerHTML = `<tr>
+                    <th scope="col" style="text-align: center">#</th>
+                    <th scope="col">Products</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Action</th>
+                </tr>`
+            } else {
+                document.getElementsByTagName('thead')[1].innerHTML = ''
+            }
+
+            var hasil = ''
+            for (var i = 0; i < arr.length; i++) {
+                hasil += `<tr onmouseover="getRowIndex(this)">
+            <th scope="row" style="padding-top: 27px; text-align: center">${Number([i])+1}</th>
+            <td style="padding-top: 27px;">${arr[i].nama}</td>
+            <td style="padding-top: 27px;">${arr[i].qty}</td>
+            <td style="padding-top: 27px;">${thousandSeparator(arr[i].harga)}</td>
+            <td>${arr[i].gambar}</td>
+            <td><input type="button" class="btn btn-danger" value="Delete" onclick="delData()" style="margin-top: 6px;"></td>
+            </tr>`
+            }
+            document.getElementById('cartBro').innerHTML = hasil
+        }
+
+        getRowIndex = (x) => {
+            idx = x.rowIndex - 1
+        }
+
+        addToCart = () => {
+            let xBarang = data[idx].nama
+            let xHarga = data[idx].harga
+            let xGambar = data[idx].gambar
+            let userOk = confirm(`Anda ingin menambah ${xBarang} ke Keranjang ?`)
+
+            if (userOk == true) {
+                // User input qty   
+                let loopQty = false
+                do {
+                    let kuantitas = prompt('How much ?', 1)
+                    if (kuantitas === null || kuantitas == 0) {
+                        loopQty = false
+                    } else if (isNaN(kuantitas)) {
+                        alert('Invalid Input!')
+                        loopQty = true
+                    } else {
+                        loopQty = false
+                        let xQty = Number(kuantitas)
+
+                        // Cek apakah barang sudah ada, jika sdh ada maka update qty
+                        let ada = 0
+                        cart.map((val) => {
+                            if (val.nama.includes(xBarang)) {
+                                xQty += val.qty
+                                val.qty = xQty
+                                ada = 1
+                            }
+                        })
+                        // Jika tidak ada, maka push
+                        if (ada == 0) {
+                            // Push ke array Cart
+                            let newCart = new Items(xBarang, xQty, xHarga, xGambar)
+                            cart.push(newCart)
+                        }
+
+                        showCart(cart)
+                        totalPrice()
+                        totCart()
+                    }
+                } while (loopQty == true);
+            }
+        }
+
+        totCart = () => {
+            var jumlah = 0
+
+            for (let i = 0; i < cart.length; i++) {
+                jumlah += cart[i].qty
+            }
+
+            if (jumlah > 0) {
+                document.getElementById('cartCuy').innerHTML = `CART ( ${jumlah} items )`
+                document.getElementById('countdown').innerHTML = `<input type="button" class="btn btn-warning"
+                    value="Checkout" onclick="countInvoice(this)">`
+            } else {
+                document.getElementById('cartCuy').innerHTML = `Cart is Empty`
+                document.getElementById('countdown').innerHTML = ''
+            }
+        }
+
+        totalPrice = () => {
+            tot = 0
+            for (let i = 0; i < cart.length; i++) {
+                tot += cart[i].qty * cart[i].harga
+            }
+
+            if (cart.length > 0) {
+                document.getElementsByTagName('h4')[0].innerHTML =
+                    `<span class="badge badge-secondary" style="letter-spacing: .5px">Total Price : Rp ${thousandSeparator(tot)}</span>`
+            } else {
+                document.getElementsByTagName('h4')[0].innerHTML = ''
+            }
+        }
+
+        delData = () => {
+            let delQty = 0
+            let yBarang = cart[idx].nama
+            let userOk = confirm(`Anda ingin menghapus ${yBarang} dari Keranjang ?`)
+
+            if (userOk == true) {
+                // User input qty
+                let loopDel = false
+
+                do {
+                    let kuantitas = prompt('How much ?', 1)
+                    if (kuantitas === null || kuantitas == 0) {
+                        loopQty = false
+                    } else if (isNaN(kuantitas)) {
+                        alert('Invalid Input!')
+                        loopQty = true
+                    } else {
+                        loopQty = false
+                        let xQty = Number(kuantitas)
+                        let currentQty = cart[idx].qty
+
+                        if (currentQty - xQty > 0) {
+                            var fixQty = currentQty - xQty
+                            cart[idx].qty = fixQty
+                        } else if (currentQty - xQty <= 0) {
+                            cart.splice(idx, 1)
+                        }
+
+                        showCart(cart)
+                        totalPrice()
+                        totCart()
+                    }
+                } while (loopDel == true);
+            }
+        }
+
+        countInvoice = (el) => {
+            // Menghilangkan button Checkout setelah dipencet
+            el.style.display = "none"
+            document.getElementById('bayar').innerHTML = `<div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Rp</span>
+            </div>
+            <input type="number" class="form-control" placeholder="Total pay..." id="pembayaran">
+            <input type="button" class="btn btn-outline-primary" value="PAY" onclick="userPay()">
+        </div>`
+
+            // Disable button Action saat checkout
+            for (let h = 0; h < 3; h++) {
+                document.getElementsByClassName('btn btn-success')[h].disabled = true
+            }
+
+            var idx = document.getElementsByClassName('btn btn-danger')
+            for (let i = 0; i < idx.length; i++) {
+                document.getElementsByClassName('btn btn-danger')[i].disabled = true
+            }
+
+            // Timer
+            let timeleft = 30;
+            dTimer = setInterval(function () {
+                document.getElementById("countdown").innerHTML = "You have " + timeleft +
+                    " seconds remaining";
+                timeleft -= 1;
+                if (timeleft < 0) {
+                    clearInterval(dTimer);
+                    alert('Time Expired!')
+                    cart = []
+                    showCart(cart)
+                    totalPrice()
+                    totCart()
+
+                    // Enable button saat waktu habis
+                    for (let h = 0; h < 3; h++) {
+                        document.getElementsByClassName('btn btn-success')[h].disabled = false
+                    }
+
+                    // menghilangkan checkout saat waktu habis
+                    document.getElementById('bayar').innerHTML = ""
+                }
+            }, 1000);
+        }
+
+        userPay = () => {
+            let totBayar = document.getElementById('pembayaran').value
+            if (tot == totBayar) {
+                alert('Terima kasih telah membayar dengan uang pas. Status pembayaran anda LUNAS.')
+                clearInterval(dTimer)
+                clearCart()
+            } else if (tot < totBayar) {
+                let kembalian = totBayar - tot
+                alert('Terima kasih, status pembayaran anda LUNAS.\n\nKembalian anda : Rp ' +
+                    thousandSeparator(kembalian))
+                clearInterval(dTimer)
+                clearCart()
+            } else if (tot > totBayar) {
+                let utang = tot - totBayar
+                alert(`Maaf uang anda kurang : Rp ${thousandSeparator(utang)}`)
+            }
+        }
+
+        clearCart = () => {
+            // Enable button saat waktu habis
+            for (let h = 0; h < 3; h++) {
+                document.getElementsByClassName('btn btn-success')[h].disabled = false
+            }
+
+            // menghilangkan checkout saat waktu habis
+            document.getElementById('bayar').innerHTML = ""
+
+            cart = []
+            showCart(cart)
+            totalPrice()
+            totCart()
+        }
+
+
+        // =============== PRE-CALLED FUNCTIONS =================
+        showProduct(data)
+        showCart(cart)
+        totCart()
+    </script>
+
+</body>
+
+</html>

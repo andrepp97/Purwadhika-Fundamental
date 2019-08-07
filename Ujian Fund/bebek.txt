@@ -1,0 +1,13 @@
+bebekGila = (awal, lahir, datang, target) => {
+    let bebek = awal
+    let i = 0     
+
+    while (bebek <= target) {
+        bebek += Math.round((bebek * lahir/100) + datang)
+        i++
+    }
+
+    return `Bebek akan mencapai ${target} dalam ${i} bulan.`
+}
+
+console.log(bebekGila(1000, 5, 30, 1250))

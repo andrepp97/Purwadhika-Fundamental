@@ -3,10 +3,10 @@ hitungBebek = (num) => {
     for (var i = 0; i < num; i++) {
         bebek = (bebek - (bebek * 20 / 100)) * 2
     }
-    return bebek
+    return Math.round(bebek)
 }
 
-// console.log(hitungBebek(1))
+console.log(hitungBebek(7))
 
 /**
  * 1 kandang = 1000 bebek
@@ -38,8 +38,7 @@ babyShark = () => {
 
     return result
 }
-
-console.log(babyShark())
+// console.log(babyShark())
 
 
 
